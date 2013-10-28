@@ -1,0 +1,7 @@
+<?php
+$HOSTNAME = "localhost";//SERVIDOR
+$USERNAME = "root";		//USUARIO
+$PASSWORD = "sistemas";		//CONTRASEÑA
+$DATABASE = "noticias";	//BASE DE DATOS
+$NRPP=7; // NUMERO DE REGISTROS POR PAGINA DEL PAGINADOR.
+?>
