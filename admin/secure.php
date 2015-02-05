@@ -6,7 +6,7 @@ if (isset($logout) || isset($_GET["logout"]) || isset($_POST["logout"])) {
 } else {
   
 	// login
-	
+	//echo "checkLogin";
 	include("checkLogin.php");
 }
 ?>

@@ -56,42 +56,6 @@ function muestraRegistros($p){
 			<?php
 		}//fin del if/else de resultados	
 }
-function muestraRegistrosRadio($p){
-	global $NRPP;
-	 $cnx = conectar();
-	$regInicio= ($p - 1) * $NRPP;
-	$res = mysql_query("SELECT id,cabecera FROM agenda  ORDER BY id  LIMIT $regInicio ,$NRPP") or die (mysql_error());
-		if (mysql_num_rows($res) > 0) {
-			
-			echo "<FORM method=\"POST\">"; 
-			//si hay resultados.
-			while(list($id,$cabecera) = mysql_fetch_array($res)){
-			?>
-	 <tr>
-	   
-	   <td class="texto"><?php echo "<INPUT TYPE='RADIO' id=\"$id\" NAME='noticia' VALUE='$id'>";
-                  ?></TD>
-                  <td class="texto"><LABEL FOR=<?php echo "\"$id\" >$cabecera </LABEL> </td>";?>
-
-	                  
-	   	 </tr>
-			<?php
-			}//fin del while
-			echo "</FORM>";
-			?>
-                <A HREF="#" id="ver"    onclick ="redirige(this.id);"> Ver </A>
-                <A HREF="#" id="editar" onclick ="redirige(this.id);"> Editar </A>
-                <A HREF="#" id="borrar" onclick ="redirige(this.id);"> Borrar </A>
-			<?php
-		}else{
-			//no hay resultados
-			?>
-	 <tr>
-	   <td colspan="5" align="center">No hay datos</td>
-	 </tr>
-			<?php
-		}//fin del if/else de resultados	
-}
 
 function barraPaginador() {
 	global $NRPP;
@@ -152,7 +116,6 @@ $meses = array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto
  //list box con los meses.
 function makeMesList($nombre,$selected){
  	global $meses;
- 	$poner ="";
 	if(!isSet($selected)){$poner = "selected";}
 	echo"\n\t<select name=\"$nombre\" >\n\t<option value=\"00\" $poner>Seleccione</option>\n";
 	for ($n=0; $n<sizeof($meses);$n++){
