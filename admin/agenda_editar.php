@@ -75,7 +75,7 @@ function eliminarImagen(){
 ?>
 
 <body>
-<form action="<?php echo $SERVER['PHP_SELF'];?>" method="post" name="form1">
+<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="form1">
   <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
       <td height="30" class="cabeceraBold"><input type="hidden" name="id" value="<?php echo $id;?>">
@@ -86,7 +86,7 @@ function eliminarImagen(){
     </tr>
     <tr>
       <td><span class="textoBold">Cabecera:</span><br>
-        <input readonly name="cabecera" type="text" id="cabecera" size="40" value="<?php echo $cabecera;?>">
+        <input  name="cabecera" type="text" id="cabecera" size="40" value="<?php echo $cabecera;?>">
       </td>
     </tr>
     <tr>
@@ -113,7 +113,7 @@ function eliminarImagen(){
 	      <div align="center"><img name="imgDisplay"   src="<?php echo $imgpath.$foto;?>"><br>
 	      <input  readonly type="text"  id="xxx" name="foto2" value="<?php echo $foto;?>">
 	      <input  type="hidden" id="foto" name="foto" value="<?php echo $foto;?>">
-	      <br><a href="javascript:;" onClick="eliminarImagen()">eliminar imagen</a>&nbsp;|&nbsp;<a href="javascript:;" onClick="openImgManager()">escoger imagen de galer&iacute;a </a> </div>
+	      <br><a href="javascript:;" onClick="eliminarImagen()">eliminar imagen</a>&nbsp;|&nbsp;<a href="javascript:;" onClick="openImgManager();">escoger imagen de galer&iacute;a </a> </div>
       </tr>
     <tr>
       <td>&nbsp;</td>

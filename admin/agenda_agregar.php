@@ -16,11 +16,13 @@ if(isset($_POST['submit'])){
 		}else{
 			$error = true;
 			$errormsg = "Formato no válido para archivo de imagen";
+		     echo $errormsg;
 		}
 	} else {
 		//imagen no se pudo subir o no seleccionaron.
 		$error=true;
 		$errormsg = "Error al cargar imagen: " . $_FILES['imagen']['name'];
+	    echo $errormsg;
 	}//fin file upload.
 		
 	//continuamos con el insert.
@@ -59,7 +61,7 @@ if(isset($_POST['submit'])){
 </head>
 
 <body>
-<form action="<?php echo $SERVER['PHP_SELF']?>" method="post" enctype="multipart/form-data" name="form1">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" name="form1">
   <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
       <td height="30" class="cabeceraBold">Insertar noticia en la agenda.</td>
@@ -94,7 +96,7 @@ if(isset($_POST['submit'])){
       </td>
     </tr>
     <tr>
-      <td><span class="textoBold">Foto:</span>        <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+      <td><span class="textoBold">Foto:</span>        <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
       <br>
       <input name="imagen" type="file" id="imagen"></td>
     </tr>

@@ -92,7 +92,7 @@ $count=0;
          </tr>
         <tr>
                 <td>
-                        <form action="<?php echo $PHP_SELF;?>" method="post" enctype="multipart/form-data" name="form1" >
+                        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data" name="form1" >
                                 <table width="400" border="0" cellspacing="0" cellpadding="0" align="center">
                                         <tr>
                                                 <td align="center" >
@@ -104,7 +104,7 @@ $count=0;
                                                         ?>
                                                           </div>
                                                           <br>si no esta la imagen que busca puede grabarla Al servidor<br>
-                                                        <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+                                                        <input type="hidden" name="max_file_size" value="1000000">
                                                         Subir imagen (solo .jpg*):<br> <input name="imagen" type="file" id="imagen">
                                                 </td>
                                         </tr>

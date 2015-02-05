@@ -1,87 +1,50 @@
 <?php
-include "./includes/config.php";
-include "./includes/funciones.php";
-//nos conectamos a la bd.
-$cnx = conectar();
-$res0 = mysql_query("SELECT id,cabecera from agenda") or die ("&output=error&msg=".mysql_error());
+include("../includes/config.php");
 
+include("../includes/funciones.php");
+include("secure.php");
 
-//cerramos la conexion con mysql.
-//	mysql_close($cnx);
-
+//$cnx = conectar();
+//$res = mysql_query("SELECT id,cabecera FROM agenda ORDER BY fecha DESC,id DESC") or die (mysql_error());
 ?>
+
 <html>
 <head>
-<title>LISTADO DE NOTICIAS DISPONIBLES</title>
-
-<link href="./estilos.css" rel="stylesheet" type="text/css">
+<title>Noticias fresquitas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="../estilos.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../includes/scripts.js"></script>
 </head>
+
 <body>
-<h1 class="cabeceraBold">LISTADO DE NOTICIAS DISPONIBLES</h1>
-<h2 class="cabecera">SELECCIONE NOTICIA</h2>
-<form name='form1' method="post"><SELECT NAME='id' onChange="submit()">
-<?php
-while (list($id,$cabecera)=mysql_fetch_array($res0))
-{
-	echo '<option ';
-	$selected = ($id==$_POST['id'])?' selected ':' ';
-	echo $selected;
-	echo 'value="'.$id.'">'.$cabecera.'</option>';
-	echo "\n";
-}
-
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="cabeceraBold"></td>
+    <td width="300" height="30" class="cabeceraBold">Cabecera</td>
+    <td colspan="3" align="center" class="cabeceraBold"></td>
+  </tr>
+ 
+  
+<?php // include ("../includes/muestraRegistros.php");
+  if (!isset($_GET['pagina']))
+      muestraRegistrosRadio(1);
+  else 
+      muestraRegistrosRadio($_GET['pagina']);
+  
 ?>
-</select></form>
+<tr><td  align="center" height="30" colspan="5" > <?php barraPaginador(); ?></td></tr>
+  <tr> 
+    <td height="30" colspan="4" class="pie"><a href="agenda_agregar.php">Agregar
+    registro</a></td>
 
-<?php
-if (isset($_POST['id']))
-{
-	// se seleccionó noticia ...
-	$res = mysql_query("SELECT cabecera,texto,fecha,foto FROM agenda WHERE id = ".$_POST['id']) or die("&output=error&msg=".mysql_error());
-	if( mysql_num_rows($res) > 0 ){
-		//si hay datos.
-		list($cabecera,$texto,$fecha,$foto) = mysql_fetch_array($res);
-		//formateamos la fecha.
-		$fecha = formatFecha($fecha);
-		//cambiamos los \n por <br> para html
-		$texto = nl2br($texto);
-	}else{
-		//no hay datos.
-		echo "error al buscar el registro.";
-		exit;
 
-	}
-	?>
 
-<table width="600" height="350" border="0" align="center"
-	cellpadding="0" cellspacing="0">
-	<tr height="30">
-		<td valign="top" class="cabecera"><span class="cabeceraBold"><?php echo $fecha;?></span><br>
-		<?php echo $cabecera;?></td>
-	</tr>
-	<tr>
-		<td valign="top" class="texto"><?php echo $texto?><br>
-		</td>
-	</tr>
-	<?php
-	if($foto != "N/A" && !empty($foto)){
-		//hay foto.
-		?>
-	<tr>
-		<td align="center"><img src="<?php echo 'fotografias/' . $foto; ?>"
-			alt="<?php echo $cabecera; ?>"></td>
-	</tr>
-	<?php
-	}//fin if de foto
-	?>
-	<tr height="30">
-		<td valign="top" class="pie"><a href="index.php">limpiar</a></td>
-	</tr>
+
+
+
+    <td height="30" align="right" class="pie"> <a href="salir.php?logout=true">salir</a></td>
+  </tr>	
+
 </table>
-	<?php
-	// se ha de cerrrar el if (isset($_POST['id']))
-}
-?>
 </body>
-
 </html>

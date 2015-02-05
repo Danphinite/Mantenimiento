@@ -12,6 +12,7 @@ if(empty($_GET['id'])){
 
 	$res = mysql_query("SELECT cabecera,texto,fecha,foto FROM agenda WHERE id = ".$_GET['id']) or die("&output=error&msg=".mysql_error());
 	if( mysql_num_rows($res) > 0 ){
+		
 		//si hay datos.
 		list($cabecera,$texto,$fecha,$foto) = mysql_fetch_array($res);
 		//formateamos la fecha.

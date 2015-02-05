@@ -15,10 +15,11 @@ if (isset($_POST['usuario_digitado'])) // se ha mandado el formulario
   } 
 }
 else {
-	 if (isset($_GET['login'])) // entrada del usuario
-	  {
+	   if (!isset($_SESSION['usuario']))
+  // if (isset($_GET['login'])) // entrada del usuario
+	    {
 	     include("interface.php");
-         exit();
+       exit();
       }
      }
 
